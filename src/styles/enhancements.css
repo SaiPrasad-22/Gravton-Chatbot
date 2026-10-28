@@ -1,0 +1,22 @@
+/* Short screens only (a phone with the on-screen keyboard open, or a landscape phone). Everything above 520px of height is exactly the supplied
+   design. Here the heading, the details line and the tool row (WhatsApp button and suggestions) step aside, the chat takes the remaining height,
+   and the messages scroll on their own with the message box pinned under them. They all return as soon as the keyboard closes. */
+@media (max-height: 520px) {
+  #gravton-chatbot-widget .gv-body { display: flex !important; flex-direction: column !important; padding: 10px 12px !important; overflow: hidden !important; }
+  #gravton-chatbot-widget .gv-body > .gv-screen { display: flex !important; flex-direction: column !important; flex: 1 1 auto !important; min-height: 0 !important; }
+  #gravton-chatbot-widget .gv-chat-heading,
+  #gravton-chatbot-widget .gv-lead-context,
+  #gravton-chatbot-widget .gv-chat-tools { display: none !important; }
+  #gravton-chatbot-widget .gv-chat { flex: 1 1 auto !important; height: auto !important; min-height: 0 !important; }
+  #gravton-chatbot-widget .gv-msgs { min-height: 48px !important; }
+  /* the mobile-number step keeps its own scroll if it is taller than the space */
+  #gravton-chatbot-widget .gv-body:has(.gv-step) { overflow-y: auto !important; }
+}
+/* New answers keep their paragraph breaks. */
+#gravton-chatbot-widget .gv-msg-bot { white-space: pre-line; }
+
+/* The mobile-number step on a short screen: the Continue row stays pinned at the bottom of the visible area while the rest can scroll. */
+@media (max-height: 520px) {
+  #gravton-chatbot-widget .gv-step .gv-flow-nav { position: sticky; bottom: 0; background: #fff; padding-block: 8px 2px; z-index: 1; }
+  #gravton-chatbot-widget .gv-step .gv-note { display: none !important; }
+}

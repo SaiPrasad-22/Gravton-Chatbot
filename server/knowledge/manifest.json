@@ -1,0 +1,31 @@
+[
+  {
+    "id": "booklet",
+    "filename": "Product-Booklet.pdf",
+    "sha256": "faf26885f9071ea2199c8d79173e47ee11b5a81863eb4914f8551dbefd055652",
+    "pages": 17
+  },
+  {
+    "id": "brochure",
+    "filename": "Bifold-Brohure.pdf",
+    "sha256": "217baef1777c98cb6728ffdee3b8fbf112fb7a05cd91dfe963a1f431fe7c4160",
+    "pages": 4
+  },
+  {
+    "id": "startup",
+    "filename": "Start-up-Guide-Quanta.pdf",
+    "sha256": "edb9fb51e4c3d45e9cf8e5437f3375e4f21c5f22e8f3cb3b6e87e91f183ff170",
+    "pages": 24
+  },
+  {
+    "id": "manual",
+    "filename": "User-Manual-Quanta-S+.pdf",
+    "sha256": "25bbbf4ee9ade9d28a008b8eee0312e0fff77d32bf08ce173c28dda6cadc1c0e",
+    "pages": 33
+  },
+  {
+    "id": "info",
+    "filename": "Gravton Info.docx",
+    "sha256": "8924dc9024edf624eea355072510333bf00f2e9307b0e1735cf97c48e6951403"
+  }
+]

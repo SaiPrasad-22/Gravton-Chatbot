@@ -1,0 +1,160 @@
+/* Additions for the AI chat and one-question-at-a-time flows.
+   Same scoping and visual language as original.css (green #97c23e, WhatsApp green #25d366,
+   #171717 / #e2e2e2 / #888). Loaded AFTER original.css; nothing in the original is changed. */
+
+/* Keep the panel inside the visible area when the mobile on-screen keyboard is open. */
+#gravton-chatbot-widget .gv-panel{max-height:calc(100dvh - 110px)!important}
+@media (max-width:639px){#gravton-chatbot-widget .gv-panel{max-height:calc(100dvh - 100px)!important}}
+
+#gravton-chatbot-widget .gv-next{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-height:44px!important;margin:0!important;padding:0 12px!important;background:#171717!important;color:#fff!important;border:0!important;border-radius:8px!important;box-shadow:none!important;font-size:13px!important;font-weight:600!important;transition:background-color .15s!important}
+#gravton-chatbot-widget .gv-next:hover{background:#2b2b2b!important;color:#fff!important}
+
+#gravton-chatbot-widget .gv-step{margin:0 0 4px!important;padding:0!important;color:#888!important;font-size:10px!important;font-weight:600!important}
+#gravton-chatbot-widget .gv-question{margin:0 0 12px!important;padding:0!important;color:#171717!important;font-size:13px!important;font-weight:600!important;line-height:1.4!important}
+#gravton-chatbot-widget .gv-review-note{margin:0 0 12px!important}
+
+#gravton-chatbot-widget .gv-row-btn{width:100%!important;margin:0!important;background:0 0!important;border-left:0!important;border-right:0!important;border-bottom:0!important;text-align:left!important;border-radius:0!important;box-shadow:none!important}
+#gravton-chatbot-widget .gv-row-btn:hover{background:#f3f8e8!important}
+#gravton-chatbot-widget .gv-row-btn:first-child{border-top:0!important}
+#gravton-chatbot-widget .gv-row-btn b{text-align:right!important;word-break:break-word!important}
+
+#gravton-chatbot-widget .gv-link-btn{margin:0!important;padding:0!important;background:0 0!important;border:0!important;box-shadow:none!important;color:#5f8a14!important;font-size:11px!important;font-weight:600!important;text-decoration:underline!important}
+#gravton-chatbot-widget .gv-link-btn:hover{background:0 0!important;color:#97c23e!important}
+
+#gravton-chatbot-widget .gv-handoff{margin:8px 0 0!important;padding:10px!important;background:#fafafa!important;border:1px solid #e6e6e6!important;border-radius:8px!important}
+#gravton-chatbot-widget .gv-handoff p{margin:0 0 8px!important;color:#666!important;font-size:10px!important;line-height:1.5!important}
+#gravton-chatbot-widget .gv-handoff-text{height:auto!important;min-height:96px!important;padding:8px 10px!important;margin:0 0 8px!important;resize:none!important;line-height:1.45!important}
+
+/* ---- AI chat ---- */
+#gravton-chatbot-widget .gv-chat-top{display:flex!important;align-items:flex-start!important;justify-content:space-between!important;margin:0 0 4px!important}
+#gravton-chatbot-widget .gv-chat{display:flex!important;flex-direction:column!important;height:min(470px,calc(100vh - 250px))!important;height:min(470px,calc(100dvh - 250px))!important;min-height:150px!important}
+#gravton-chatbot-widget .gv-msgs{flex:1 1 auto!important;min-height:0!important;overflow-y:auto!important;display:flex!important;flex-direction:column!important;gap:8px!important;padding:2px 0 8px!important}
+#gravton-chatbot-widget .gv-msg{max-width:86%!important;margin:0!important;padding:9px 12px!important;border-radius:12px!important;font-size:12px!important;line-height:1.5!important;white-space:pre-wrap!important;overflow-wrap:anywhere!important}
+#gravton-chatbot-widget .gv-msg-bot{align-self:flex-start!important;background:#f5f5f5!important;color:#171717!important;border:1px solid #e6e6e6!important;border-bottom-left-radius:4px!important}
+#gravton-chatbot-widget .gv-msg-user{align-self:flex-end!important;background:#171717!important;color:#fff!important;border-bottom-right-radius:4px!important}
+
+#gravton-chatbot-widget .gv-typing{display:flex!important;gap:4px!important;align-items:center!important;padding:12px!important}
+#gravton-chatbot-widget .gv-typing span{width:6px!important;height:6px!important;border-radius:50%!important;background:#97c23e!important;animation:gvTyping 1.2s infinite ease-in-out!important}
+#gravton-chatbot-widget .gv-typing span:nth-child(2){animation-delay:.15s!important}
+#gravton-chatbot-widget .gv-typing span:nth-child(3){animation-delay:.3s!important}
+@keyframes gvTyping{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-4px);opacity:1}}
+@media (prefers-reduced-motion:reduce){#gravton-chatbot-widget .gv-typing span{animation:none!important;opacity:.7!important}}
+
+#gravton-chatbot-widget .gv-chat-error{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;padding:8px 10px!important;background:#fdf1f0!important;border:1px solid #f1c9c6!important;border-radius:8px!important;color:#b3261e!important;font-size:11px!important;line-height:1.4!important}
+
+#gravton-chatbot-widget .gv-chat-tools{flex:0 0 auto!important}
+#gravton-chatbot-widget .gv-chat-tools .gv-secondary-btn{margin:0 0 8px!important}
+#gravton-chatbot-widget .gv-chips{display:flex!important;flex-wrap:wrap!important;gap:6px!important;margin:0 0 8px!important}
+#gravton-chatbot-widget .gv-chip{margin:0!important;padding:6px 10px!important;background:#fff!important;color:#171717!important;border:1px solid #e2e2e2!important;border-radius:999px!important;box-shadow:none!important;font-size:11px!important;font-weight:500!important;text-align:left!important}
+#gravton-chatbot-widget .gv-chip:hover{border-color:#97c23e!important;background:#fafdf5!important}
+
+#gravton-chatbot-widget .gv-composer{display:flex!important;align-items:center!important;gap:8px!important;flex:0 0 auto!important}
+#gravton-chatbot-widget .gv-composer .gv-input{flex:1 1 auto!important;min-width:0!important}
+#gravton-chatbot-widget .gv-send{display:grid!important;place-items:center!important;flex:0 0 auto!important;width:42px!important;height:42px!important;margin:0!important;padding:0!important;background:#97c23e!important;color:#fff!important;border:0!important;border-radius:8px!important;box-shadow:none!important;transition:background-color .15s,opacity .15s!important}
+#gravton-chatbot-widget .gv-send:hover{background:#87b030!important;color:#fff!important}
+#gravton-chatbot-widget .gv-send:disabled{opacity:.45!important;cursor:not-allowed!important}
+#gravton-chatbot-widget .gv-send svg{width:18px!important;height:18px!important}
+#gravton-chatbot-widget .gv-ai-note{margin:8px 0 0!important}
+
+/* Home "ask a question" row */
+#gravton-chatbot-widget .gv-ask{margin:16px 0 0!important;padding:14px 0 0!important;border-top:1px solid #eee!important}
+
+/* Prevent iOS from zooming into the text boxes; keyboard-friendly sizing on phones. */
+@media (max-width:639px){#gravton-chatbot-widget .gv-composer .gv-input{font-size:16px!important}}
+
+#gravton-chatbot-widget .gv-input:focus-visible,#gravton-chatbot-widget button:focus-visible{outline:2px solid #97c23e!important;outline-offset:2px!important}
+
+/* Gravton AI presentation pass */
+#gravton-chatbot-widget .gv-panel{max-width:390px!important;border:1px solid #e8e9e4!important;border-radius:22px!important;box-shadow:0 26px 75px rgba(20,28,11,.2)!important}
+#gravton-chatbot-widget .gv-head{height:70px!important;padding:0 19px!important;background:#141611!important}
+#gravton-chatbot-widget .gv-head-left{align-items:center!important;gap:10px!important}
+#gravton-chatbot-widget .gv-logo{height:39px!important;max-width:96px!important}
+#gravton-chatbot-widget .gv-head-label{display:flex!important;flex-direction:column!important;gap:2px!important;color:#fff!important}
+#gravton-chatbot-widget .gv-head-label strong{font-size:10px!important;letter-spacing:1.8px!important}
+#gravton-chatbot-widget .gv-head-label small{color:#aab09c!important;font-size:8px!important;letter-spacing:1.5px!important}
+#gravton-chatbot-widget .gv-body{padding:20px!important}
+#gravton-chatbot-widget .gv-titles{margin-bottom:17px!important}
+#gravton-chatbot-widget .gv-eyebrow{display:block!important;margin:0 0 7px!important;color:#73883b!important;font-size:9px!important;font-weight:700!important;letter-spacing:1.5px!important}
+#gravton-chatbot-widget .gv-h3{font-size:20px!important;font-weight:650!important;letter-spacing:-.35px!important}
+#gravton-chatbot-widget .gv-p{margin-top:5px!important;color:#76796f!important;font-size:12px!important}
+#gravton-chatbot-widget .gv-card{gap:13px!important;min-height:66px!important;margin-bottom:9px!important;padding:11px 13px!important;border-color:#e9eae5!important;border-radius:14px!important}
+#gravton-chatbot-widget .gv-card-ico{width:42px!important;height:42px!important;border-radius:12px!important;background:#f5f6f1!important;color:#50574a!important}
+#gravton-chatbot-widget .gv-card-highlight{border-color:#d8e5bc!important;background:#f7faef!important}
+#gravton-chatbot-widget .gv-card-txt strong{font-size:12px!important}
+#gravton-chatbot-widget .gv-card-txt span{margin-top:3px!important;color:#85877e!important;font-size:10px!important}
+#gravton-chatbot-widget .gv-ai-entry{display:flex!important;align-items:center!important;gap:12px!important;width:100%!important;min-height:67px!important;margin:15px 0 10px!important;padding:11px 13px!important;text-align:left!important;background:#f7faef!important;color:#1d2118!important;border:1px solid #dce8c6!important;border-radius:14px!important;box-shadow:none!important}
+#gravton-chatbot-widget .gv-ai-entry:hover{border-color:#a9c76a!important;background:#f1f7e4!important}
+#gravton-chatbot-widget .gv-ai-symbol{display:grid!important;place-items:center!important;width:40px!important;height:40px!important;flex:0 0 auto!important;border-radius:12px!important;background:#28321a!important;color:#d7edaa!important;font-size:21px!important}
+#gravton-chatbot-widget .gv-ai-entry-copy{flex:1 1 auto!important}
+#gravton-chatbot-widget .gv-ai-entry-copy strong{display:block!important;font-size:13px!important;font-weight:700!important}
+#gravton-chatbot-widget .gv-ai-entry-copy small{display:block!important;margin-top:3px!important;color:#777d6e!important;font-size:10px!important}
+#gravton-chatbot-widget .gv-ai-entry .gv-arrow{color:#718345!important}
+#gravton-chatbot-widget .gv-wa{min-height:47px!important;border-radius:12px!important;background:#25c765!important;font-size:12px!important;letter-spacing:.05px!important}
+#gravton-chatbot-widget .gv-home-wa{margin:0!important}
+#gravton-chatbot-widget .gv-note{margin-top:9px!important;color:#888b81!important;font-size:9px!important}
+#gravton-chatbot-widget .gv-chat-top{align-items:center!important;margin-bottom:15px!important}
+#gravton-chatbot-widget .gv-chat-heading{margin:0 0 14px!important}
+#gravton-chatbot-widget .gv-chat-heading .gv-h3{font-size:21px!important}
+#gravton-chatbot-widget .gv-lead-context{display:flex!important;align-items:center!important;gap:10px!important;margin:0 0 15px!important;padding:10px 11px!important;background:#f7f8f4!important;border:1px solid #eceee8!important;border-radius:12px!important}
+#gravton-chatbot-widget .gv-avatar{display:grid!important;place-items:center!important;width:34px!important;height:34px!important;border-radius:50%!important;background:#e6edda!important;color:#526b2c!important;font-size:13px!important;font-weight:700!important}
+#gravton-chatbot-widget .gv-lead-context>span:nth-child(2){display:flex!important;flex-direction:column!important;gap:3px!important;flex:1!important}
+#gravton-chatbot-widget .gv-lead-context small{color:#858a7d!important;font-size:8px!important;font-weight:700!important;letter-spacing:1px!important}
+#gravton-chatbot-widget .gv-lead-context strong{color:#272a22!important;font-size:11px!important;font-weight:600!important}
+#gravton-chatbot-widget .gv-lead-context .gv-link-btn{font-size:10px!important}
+#gravton-chatbot-widget .gv-chat{height:min(425px,calc(100dvh - 370px))!important;min-height:170px!important}
+#gravton-chatbot-widget .gv-msg{padding:10px 12px!important;border-radius:14px!important;font-size:11px!important}
+#gravton-chatbot-widget .gv-msg-bot{background:#f5f6f2!important;border-color:#eceee8!important}
+#gravton-chatbot-widget .gv-msg-user{background:#252a20!important}
+#gravton-chatbot-widget .gv-chips{gap:7px!important;margin:3px 0 10px!important}
+#gravton-chatbot-widget .gv-chip{padding:8px 10px!important;border-color:#e3e6dc!important;border-radius:10px!important;color:#414638!important;font-size:10px!important}
+#gravton-chatbot-widget .gv-small-wa{margin:0 0 10px!important}
+#gravton-chatbot-widget .gv-composer .gv-input{height:46px!important;border-radius:12px!important;background:#fbfcf9!important}
+#gravton-chatbot-widget .gv-send{width:46px!important;height:46px!important;border-radius:12px!important;background:#566e31!important}
+#gravton-chatbot-widget .gv-send:hover{background:#455a27!important}
+#gravton-chatbot-widget .gv-fab{background:#171a13!important}
+#gravton-chatbot-widget .gv-fab:hover{background:#252b1d!important}
+#gravton-chatbot-widget .gv-fab-ico{display:grid!important;place-items:center!important;width:21px!important;height:21px!important;color:#d7edaa!important;font-size:20px!important}
+@media (min-width:640px){#gravton-chatbot-widget .gv-panel{width:390px!important}#gravton-chatbot-widget .gv-fab{background:#171a13!important}}
+@media (max-width:639px){#gravton-chatbot-widget .gv-body{padding:18px!important}#gravton-chatbot-widget .gv-chat{height:min(390px,calc(100dvh - 375px))!important;min-height:150px!important}#gravton-chatbot-widget .gv-fab{background:#171a13!important;box-shadow:0 6px 20px rgba(0,0,0,.18)!important}#gravton-chatbot-widget .gv-fab-ico{width:24px!important;height:24px!important;color:#d7edaa!important}}
+#gravton-chatbot-widget .gv-body{padding:16px!important}
+#gravton-chatbot-widget .gv-titles{margin-bottom:12px!important}
+#gravton-chatbot-widget .gv-card{min-height:58px!important;margin-bottom:6px!important;padding:9px 11px!important}
+#gravton-chatbot-widget .gv-card-ico{width:38px!important;height:38px!important}
+#gravton-chatbot-widget .gv-ai-entry{min-height:59px!important;margin:10px 0 8px!important;padding:9px 11px!important}
+#gravton-chatbot-widget .gv-ai-symbol{width:37px!important;height:37px!important}
+#gravton-chatbot-widget .gv-chat-top{margin-bottom:8px!important}
+#gravton-chatbot-widget .gv-chat-heading{margin-bottom:8px!important}
+#gravton-chatbot-widget .gv-lead-context{margin-bottom:9px!important}
+#gravton-chatbot-widget .gv-chat{height:min(390px,calc(100dvh - 410px))!important;min-height:190px!important}
+@media (max-width:639px){#gravton-chatbot-widget .gv-body{padding:16px!important}#gravton-chatbot-widget .gv-chat{height:min(360px,calc(100dvh - 410px))!important;min-height:190px!important}}
+
+/* Compact, production-facing widget polish */
+#gravton-chatbot-widget .gv-panel{max-width:360px!important;border:1px solid rgba(151,194,62,.44)!important;box-shadow:0 22px 60px rgba(0,0,0,.2),0 0 0 1px rgba(151,194,62,.12),0 0 16px rgba(151,194,62,.12)!important;animation:gvEdgeGlow 5s ease-in-out infinite!important}
+#gravton-chatbot-widget .gv-head{height:58px!important;padding:0 16px!important}
+#gravton-chatbot-widget .gv-head-left{align-items:center!important}
+#gravton-chatbot-widget .gv-logo{height:36px!important;max-width:110px!important}
+#gravton-chatbot-widget .gv-body{padding:15px!important}
+#gravton-chatbot-widget .gv-titles{margin-bottom:11px!important}
+#gravton-chatbot-widget .gv-h3{font-size:19px!important}
+#gravton-chatbot-widget .gv-card{min-height:54px!important;margin-bottom:6px!important;padding:8px 10px!important;border-radius:12px!important}
+#gravton-chatbot-widget .gv-card-ico{width:36px!important;height:36px!important;border-radius:10px!important}
+#gravton-chatbot-widget .gv-card-txt strong{font-size:11px!important}
+#gravton-chatbot-widget .gv-card-txt span{font-size:9px!important}
+#gravton-chatbot-widget .gv-ai-entry{min-height:55px!important;margin:9px 0 7px!important;padding:8px 10px!important;border-radius:12px!important}
+#gravton-chatbot-widget .gv-ai-symbol{width:36px!important;height:36px!important;border-radius:10px!important}
+#gravton-chatbot-widget .gv-ai-symbol img{display:block!important;width:26px!important;height:26px!important;object-fit:contain!important}
+#gravton-chatbot-widget .gv-ai-entry-copy small{font-size:9px!important}
+#gravton-chatbot-widget .gv-wa{min-height:42px!important;border-radius:10px!important;font-size:11px!important}
+#gravton-chatbot-widget .gv-home-wa{margin:0!important}
+#gravton-chatbot-widget .gv-note{margin-top:7px!important;font-size:9px!important}
+#gravton-chatbot-widget .gv-fab{background:#171a13!important}
+#gravton-chatbot-widget .gv-fab-ico{display:block!important;width:24px!important;height:24px!important;object-fit:contain!important}
+#gravton-chatbot-widget .gv-fab-txt{font-size:12px!important}
+#gravton-chatbot-widget .gv-ai-question-btn{display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;width:100%!important;min-height:42px!important;margin:8px 0 0!important;padding:7px 10px!important;background:#fff!important;color:#34382d!important;border:1px solid #c8dda1!important;border-radius:10px!important;box-shadow:none!important;font-size:11px!important;font-weight:600!important}
+#gravton-chatbot-widget .gv-ai-question-btn:hover{background:#f7faef!important;border-color:#97c23e!important}
+#gravton-chatbot-widget .gv-ai-question-btn img{width:20px!important;height:20px!important;object-fit:contain!important;filter:brightness(.36) sepia(.45) saturate(1.5)!important}
+#gravton-chatbot-widget .gv-flow-nav{align-items:center!important;margin:0 0 10px!important}
+@keyframes gvEdgeGlow{0%,100%{box-shadow:0 22px 60px rgba(0,0,0,.2),0 0 0 1px rgba(151,194,62,.1),0 0 9px rgba(151,194,62,.07)}50%{box-shadow:0 22px 60px rgba(0,0,0,.2),0 0 0 1px rgba(151,194,62,.27),0 0 17px rgba(151,194,62,.17)}}
+@media (prefers-reduced-motion:reduce){#gravton-chatbot-widget .gv-panel{animation:none!important}}
+@media (min-width:640px){#gravton-chatbot-widget .gv-panel{width:360px!important}}
+@media (max-width:639px){#gravton-chatbot-widget .gv-panel{width:calc(100vw - 16px)!important;max-width:360px!important;max-height:calc(100dvh - 100px)!important}#gravton-chatbot-widget .gv-body{padding:14px!important}#gravton-chatbot-widget .gv-fab-ico{width:23px!important;height:23px!important}}
